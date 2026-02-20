@@ -1,18 +1,18 @@
 {
-  "name": "baileys",
+  "name": "@xantaclaus/baileys",
   "type": "module",
-  "version": "7.0.0-rc.9",
+  "version": "1.0.0",
   "description": "A WebSockets library for interacting with WhatsApp Web",
   "keywords": [
     "whatsapp",
     "automation"
   ],
-  "homepage": "https://github.com/WhiskeySockets/Baileys/",
+  "homepage": "https://github.com/Xantaclaus/xantabail",
   "repository": {
-    "url": "git@github.com:WhiskeySockets/Baileys.git"
+    "url": "https://github.com/Xantaclaus/xantabail"
   },
   "license": "MIT",
-  "author": "Rajeh Taher",
+  "author": "xantabaileys",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
