@@ -1,3 +1,6 @@
+import * as os from "node:os"
+import makeWASocket from "./Socket/index"
+
 declare global {
   // eslint-disable-next-line no-var
   var __XANTA_BEST_BANNER__: boolean | undefined
@@ -59,11 +62,9 @@ function xantaLogo() {
 }
 
 function makeBox(title: string, rows: string[]) {
-  // width dalam box (biar rapi di terminal)
   const W = 58
   const top = `╔${"═".repeat(W)}╗`
   const bot = `╚${"═".repeat(W)}╝`
-
   const line = (content: string) => `║ ${padRight(content, W - 2)} ║`
 
   const out: string[] = [top, line(title)]
@@ -74,9 +75,6 @@ function makeBox(title: string, rows: string[]) {
 }
 
 function getSysRows() {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const os = require("os") as typeof import("os")
-
   const cpus = os.cpus?.() || []
   const cores = cpus.length || 0
   const model = cpus[0]?.model?.trim() || "unknown"
@@ -85,7 +83,6 @@ function getSysRows() {
   const used = total - free
   const load1 = os.loadavg?.()?.[0] ?? 0
 
-  // ram bar
   const pct = total > 0 ? used / total : 0
   const barLen = 18
   const fill = Math.round(pct * barLen)
@@ -107,10 +104,7 @@ function getSysRows() {
 function bestBanner() {
   const logo = xantaLogo()
 
-  const box = makeBox(
-    "XANTA SYSTEM",
-    getSysRows()
-  )
+  const box = makeBox("XANTA SYSTEM", getSysRows())
     .split("\n")
     .map((l) => gradient(l, [0, 180, 255], [180, 0, 255]))
     .join("\n")
@@ -127,15 +121,13 @@ if (!globalThis.__XANTA_BEST_BANNER__) {
 }
 
 /* jangan hapus exports asli lu di bawah ini */
-import makeWASocket from './Socket/index'
-
-export * from '../WAProto/index.js'
-export * from './Utils/index'
-export * from './Types/index'
-export * from './Defaults/index'
-export * from './WABinary/index'
-export * from './WAM/index'
-export * from './WAUSync/index'
+export * from "../WAProto/index.js"
+export * from "./Utils/index"
+export * from "./Types/index"
+export * from "./Defaults/index"
+export * from "./WABinary/index"
+export * from "./WAM/index"
+export * from "./WAUSync/index"
 
 export type WASocket = ReturnType<typeof makeWASocket>
 export { makeWASocket }
